@@ -104,20 +104,15 @@ function handleMessageRemoved(mutation) {
  * @returns Boolean
  */
 function isMessage(removedMessage) {
-  let invalidators = [!removedMessage.innerHTML,
-    removedMessage.innerHTML.length < 2,
-    removedMessage.innerHTML.includes('placeholder'),
-    removedMessage.className.includes('deleted'),
+  let invalid = (
+    !removedMessage.innerHTML ||
+    removedMessage.innerHTML.length < 2 ||
+    removedMessage.innerHTML.includes('placeholder') ||
+    removedMessage.className.includes('deleted') ||
     removedMessage.className.includes('tooltip')
-  ]
+  )
 
-  for (let notMessage of invalidators) {
-    if (notMessage) {
-      return false
-    }
-  }
-
-  return true
+  return !invalid
 }
 
 /**
