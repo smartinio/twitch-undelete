@@ -1,5 +1,4 @@
-var chat = null
-var observer = null
+//@ts-check
 var messageObservers = []
 var removedMessages = {}
 var getId = idMaker()
@@ -17,9 +16,8 @@ document.onreadystatechange = function () {
     }
 
     clearInterval(interval)
-    chat = amsg.parentElement
-    observer = getChatObserver()
-    observer.observe(chat, {
+    let chat = amsg.parentElement
+    getChatObserver().observe(chat, {
       childList: true
     })
   }, 500)
